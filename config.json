@@ -1,23 +1,23 @@
 {
     "model" : {
-        "min_input_size":       288,
-        "max_input_size":       448,
-        "anchors":              [55,69, 75,234, 133,240, 136,129, 142,363, 203,290, 228,184, 285,359, 341,260],
-        "labels":               ["kangaroo"]
+        "min_input_size":       640,
+        "max_input_size":       640,
+        "anchors":              [0,0, 78,77, 97,95, 122,121, 154,154, 185,186, 216,217, 259,257, 366,341],
+        "labels":               ["gate"]
     },
 
     "train": {
-        "train_image_folder":   "/home/andy/Desktop/github/kangaroo/images/",
-        "train_annot_folder":   "/home/andy/Desktop/github/kangaroo/annots/",
-        "cache_name":           "kangaroo_train.pkl",
+        "train_image_folder":   "C:/Users/tjones/Desktop/yolo_3/data/images/",
+        "train_annot_folder":   "C:/Users/tjones/Desktop/yolo_3/data/annotations/",
+        "cache_name":           "gate_train.pkl",
 
         "train_times":          8,
         "batch_size":           16,
         "learning_rate":        1e-4,
-        "nb_epochs":            100,
-        "warmup_epochs":        3,
+        "nb_epochs":            5,
+        "warmup_epochs":        1,
         "ignore_thresh":        0.5,
-        "gpus":                 "0,1",
+        "gpus":                 "0",
 
         "grid_scales":          [1,1,1],
         "obj_scale":            5,
@@ -26,8 +26,8 @@
         "class_scale":          1,
 
         "tensorboard_dir":      "logs",
-        "saved_weights_name":   "kangaroo.h5",
-        "debug":                true
+        "saved_weights_name":   "gate.h5",
+        "debug":                false
     },
 
     "valid": {

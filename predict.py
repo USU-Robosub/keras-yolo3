@@ -23,8 +23,8 @@ def _main_(args):
     ###############################
     #   Set some parameter
     ###############################       
-    net_h, net_w = 416, 416 # a multiple of 32, the smaller the faster
-    obj_thresh, nms_thresh = 0.5, 0.45
+    net_h, net_w = 192, 256 # a multiple of 32, the smaller the faster
+    obj_thresh, nms_thresh = 0.3, 0.45
 
     ###############################
     #   Load the model
@@ -65,8 +65,8 @@ def _main_(args):
 
         video_writer = cv2.VideoWriter(video_out,
                                cv2.VideoWriter_fourcc(*'MPEG'), 
-                               50.0, 
-                               (frame_w, frame_h))
+                               30.0,
+                               (net_w, net_h))
         # the main loop
         batch_size  = 1
         images      = []
@@ -74,6 +74,7 @@ def _main_(args):
         show_window = False
         for i in tqdm(range(nb_frames)):
             _, image = video_reader.read()
+            image = cv2.resize(image, (net_w, net_h))
 
             if (float(i+1)/nb_frames) > start_point/100.:
                 images += [image]
@@ -106,7 +107,7 @@ def _main_(args):
         else:
             image_paths += [input_path]
 
-        image_paths = [inp_file for inp_file in image_paths if (inp_file[-4:] in ['.jpg', '.png', 'JPEG'])]
+        image_paths = [inp_file for inp_file in image_paths if (inp_file[-4:] in ['jpeg', '.png', 'JPEG'])]
 
         # the main loop
         for image_path in image_paths:
